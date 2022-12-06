@@ -43,7 +43,9 @@ for each in fhmove:
 #Apply movements to stack
 def movement(stack_config, movement_inst):
     for m in movements:
-        for crate in stack_config[m[1]][0:m[0]]:
+        itemsstuff = stack_config[m[1]][0:m[0]]
+        itemsstuff.reverse()
+        for crate in itemsstuff:
             stack_config[m[2]].insert(0,crate)
         del stack_config[m[1]][:m[0]]
 
@@ -51,6 +53,9 @@ def movement(stack_config, movement_inst):
 
 final_stack = movement(stacks, movements)
 print("Final topstack")
+
+for k, v in final_stack.items():
+    print(k,v)
 
 for k, v in final_stack.items():
     print(v[0], end="")
