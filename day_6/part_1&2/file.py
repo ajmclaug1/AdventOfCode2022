@@ -14,4 +14,4 @@ def findUniqueSeq(characters):
         i += 1
 
 findUniqueSeq(4)
-findUniqueSeq(14) #3635 too low
+findUniqueSeq(14)
