@@ -3,21 +3,24 @@ with open("input.txt") as f:
 
 cycle = 0
 
-cycles_to_sum = [20,60,100,140,180,220]
+sumofcycles = 0
 
-sumofsignalstrenghts = 0
+x = 1
 
-running_total = 0
+cyclesdict ={}
 
 for each in fh:
-    cycle +=1
     value = each.split(" ")
+    cycle += 1
+    cyclesdict[cycle] = x
     if value[0] == "addx":
-        cycle +=1
+        cycle += 1
+        cyclesdict[cycle] = x
     if len(value) == 2:
-        running_total += int(value[1])
-    if cycle in cycles_to_sum:
-        print(value)
-        sumofsignalstrenghts += running_total
+        x += int(value[1])
 
-print(sumofsignalstrenghts)
+for k,v in cyclesdict.items():
+    if k in [20,60,100,140,180,220]:
+        sumofcycles += (k *v)
+
+print(sumofcycles)
