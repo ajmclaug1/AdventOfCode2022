@@ -28,34 +28,40 @@ def monke(file, noMonke, noLines):
 
 
 monkObj = monke(fh, 7,6)
-
 def fAround(monkeData, rounds):
-    for each in range(0,rounds):
-        print("round %s" % (each))
-        for k, v in monkeData.items():
-            print(k, v["items"])
-            for stuff in v["items"]:
-                print(stuff)
-                monkeData[k]["inspection"] += 1
-                monkeData[k]["items"].remove(stuff)
-                if v["worry"] == "*":
-                    worryLvl = int(stuff) * int(stuff)
+    i = 0
+    while i < rounds:
+        i += 1
+        dictI = 0
+        while dictI < len(monkeData):
+            listI = 0
+            while listI < len(monkeData[dictI]["items"]):
+                monkeData[dictI]["inspection"] += 1
+                if monkeData[dictI]["worry"] == '*':
+                    worryLvl = int(monkeData[dictI]["items"][listI]) * int(monkeData[dictI]["items"][listI])
                 else:
-                    v["worry"]
-                    worryLvl =  eval(str(stuff) + v["worry"])
+                    worryLvl =  eval(str(monkeData[dictI]["items"][listI]) + monkeData[dictI]["worry"])
                 worryLvl = trunc(worryLvl / 3)
-                if worryLvl % int(v["test"]) == 0:
-                    monkeData[int(v["true"])]["items"].append(worryLvl)
+                if worryLvl % int(monkeData[dictI]["test"]) == 0:
+                    monkeData[int(monkeData[dictI]["true"])]["items"].append(worryLvl)
                 else:
-                    monkeData[int(v["false"])]["items"].append(worryLvl)   
+                    monkeData[int(monkeData[dictI]["false"])]["items"].append(worryLvl)
+                listI += 1
+       
+            monkeData[dictI]["items"] = []
+            dictI += 1
+
     return monkeData
     
 
 
 answer = fAround(monkObj, 20)
 
+highanswer = []
 for k, v in answer.items():
-    print(v["inspection"])
+    highanswer.append(int(v["inspection"]))
 
+highanswer.sort(reverse = True)
+print(highanswer[0] * highanswer[1])
 
 
