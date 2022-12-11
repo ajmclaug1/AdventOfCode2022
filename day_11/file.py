@@ -63,5 +63,3 @@ for k, v in answer.items():
 
 highanswer.sort(reverse = True)
 print(highanswer[0] * highanswer[1])
-
-
