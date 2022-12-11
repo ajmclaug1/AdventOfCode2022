@@ -31,9 +31,11 @@ monkObj = monke(fh, 7,6)
 
 def fAround(monkeData, rounds):
     for each in range(0,rounds):
+        print("round %s" % (each))
         for k, v in monkeData.items():
             print(k, v["items"])
             for stuff in v["items"]:
+                print(stuff)
                 monkeData[k]["inspection"] += 1
                 monkeData[k]["items"].remove(stuff)
                 if v["worry"] == "*":
